@@ -247,7 +247,7 @@ export class Auth0Client {
   }
 
   private _authorizeUrl(authorizeOptions: AuthorizeOptions) {
-    return this._url(`/authorize?${createQueryParams(authorizeOptions)}`);
+    return this._url(`/oauth2/authorize?${createQueryParams(authorizeOptions)}`);
   }
 
   private async _verifyIdToken(
@@ -808,7 +808,7 @@ export class Auth0Client {
     const { federated, ...logoutOptions } = options.logoutParams || {};
     const federatedQuery = federated ? `&federated` : '';
     const url = this._url(
-      `/v2/logout?${createQueryParams({
+      `/oidc/logout?${createQueryParams({
         clientId: options.clientId,
         ...logoutOptions
       })}`
